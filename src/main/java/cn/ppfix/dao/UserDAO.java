@@ -109,6 +109,7 @@ public class UserDAO extends SessionFactoryHelper {
         /**
          * 尝试以上方法能不能自动匹配装载
          * 结果：不能，缺少装配参数
+         * VO类必须带构造器且构造器个数和属性顺序都必须与实体类一致
          */
         String sql = "select u.id,u.name from User u where u.id > 0";
         Query query = getCurrentSession().createSQLQuery(sql).setResultTransformer(Transformers.aliasToBean(UserDTO.class));
@@ -125,10 +126,23 @@ public class UserDAO extends SessionFactoryHelper {
     }
 
 
+    /**
+     * 实体类或者VO类必须带构造器且构造器个数和属性顺序都必须与实体类一致
+     */
     public List<User> test2() {
         String hql = "select  new User(id,name) from User model where model.id > 0";
         Query query = getCurrentSession().createQuery(hql);
         List<User> list = query.list();
+        return list;
+    }
+
+    /**
+     * 实体类或者VO类必须带构造器且构造器个数和属性顺序都必须与实体类一致,VO类必须带详细包名
+     */
+    public List<UserDTO> test3() {
+        String hql = "select new cn.ppfix.entity.UserDTO(id,name) from User model where model.id > 0";
+        Query query = getCurrentSession().createQuery(hql);
+        List<UserDTO> list = query.list();
         return list;
     }
 }

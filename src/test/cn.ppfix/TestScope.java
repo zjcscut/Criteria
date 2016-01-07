@@ -44,4 +44,10 @@ public class TestScope extends  BasicTest{
         List<User> list = userDAO.test2();
         System.out.println("list: " +list);
     }
+
+    @Test
+    public void TestVo3(){
+        List<UserDTO> list = userDAO.test3();
+        System.out.println("list: " +list);
+    }
 }
