@@ -17,11 +17,9 @@ public class User implements java.io.Serializable {
     public User() {
     }
 
-    public User(Integer id, String name, Integer age, Date birth) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.age = age;
-        this.birth = birth;
     }
 
     public Integer getId() {
@@ -55,7 +53,6 @@ public class User implements java.io.Serializable {
     public void setBirth(Date birth) {
         this.birth = birth;
     }
-
 
     @Override
     public String toString() {

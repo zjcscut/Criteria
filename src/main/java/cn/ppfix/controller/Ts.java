@@ -2,6 +2,7 @@ package cn.ppfix.controller;
 
 import cn.ppfix.dao.UserDAO;
 import cn.ppfix.entity.User;
+import cn.ppfix.entity.UserDTO;
 import cn.ppfix.util.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,13 @@ public class Ts {
     public String pageQuery(@RequestParam(required = false, value = "page", defaultValue = "1") int page,
                             @RequestParam(required = false, value = "size", defaultValue = "2") int size) {
         List<User> lsit = userDAO.pageQuery(page, size);
+        return Json.toJson(lsit);
+    }
+
+    @RequestMapping(value = "getDTO")
+    @ResponseBody
+    public String getDTO() {
+        List<UserDTO> lsit = userDAO.getDTO();
         return Json.toJson(lsit);
     }
 }
